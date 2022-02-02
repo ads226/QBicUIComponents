@@ -1,0 +1,40 @@
+qb-ui-checkers {
+	--font-size: 11pt;
+	--font-weight: normal;
+	--font-color: hsl(200, 50%, 10%, 0.9);
+
+	/* --host-diaplay: flex; */
+	--host-direction: initial;
+	--host-wrap: initial;
+	--host-justify-content: initial;
+	--host-align-items: initial;
+	--host-align-content: initial;
+	--host-gap: 12px;
+	--host-width: auto;
+	--host-height: auto;
+	--host-padding: 0;
+	--host-margin: 0;
+	--host-border: 0;
+
+	/* --wrap-display: flex; */
+	--wrap-direction: initial;
+	--wrap-wrap: initial;
+	--wrap-justify-content: initial;
+	--wrap-align-items: center;
+	--wrap-align-content: initial;
+	--wrap-gap: 4px;
+	--wrap-width: auto;
+	--wrap-height: auto;
+	--wrap-padding: 0;
+	--wrap-margin: 0;
+	--wrap-border: 0;
+
+	/* --input-appearance: none; */
+	/* --input-display: flex; */
+	/* --input-justify-content: center; */
+	/* --input-align-items: center; */
+	--input-size: 1.2em;
+	--input-border: thin solid hsl(200, 50%, 10%, 0.5);
+	--input-radius: 2px;
+	--input-color: none;
+}
