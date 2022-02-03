@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>QBicUISwitches</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR');
+			* {
+				border: 0;
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+				user-select: none;
+				font-family: 'Noto Sans KR', sans-serif;
+			}
+			section {
+				outline: thin solid gray;
+				width: 80%;
+				padding: 25px 0;
+				margin: 50px auto;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 12px;
+			}
+			.wrapper {
+				display: flex;
+				align-items: center;
+				gap: 4px;
+			}
+		</style>
+		<script async type="module" src="./components/QBicConponents.js"></script>
+	</head>
+	
+	<body>
+		<section>
+			<div class="container">
+				<div class="wrapper">
+					<input type="checkbox" id="checkbox_0" />
+					<label for="checkbox_0">동해물과</label>
+				</div>
+				<div class="wrapper">
+					<input type="checkbox" id="checkbox_1" checked />
+					<label for="checkbox_1">백두산이</label>
+				</div>
+				<div class="wrapper">
+					<input type="checkbox" id="checkbox_2" disabled />
+					<label for="checkbox_2">마르고</label>
+				</div>
+				<div class="wrapper">
+					<input type="checkbox" id="checkbox_3" checked disabled />
+					<label for="checkbox_3">닳도록</label>
+				</div>
+			</div>
+		</section>
+		
+		<section>
+			<qb-ui-switches text="동해물과|백두산이|마르고|닳도록" checked="0|1|0|1" disabled="0|0|1|1"></qb-ui-switches>
+		</section>
+		
+		<section></section>
+		
+		<section></section>
+	</body>
+	
+	<script>
+		window.addEventListener('load', (e) => {
+			console.log("++++++++++++++++ page load completed!!");
+			
+			const container = document.querySelectorAll('section')[2];
+			
+			const switches = document.createElement('qb-ui-switches');
+			switches.text = ['동해물과', '백두산이', '마르고', '닳도록'];
+			switches.checked = [0, 1, 0, 1];
+			switches.disabled = [0, 0, 1, 1];
+			switches.addEventListener('onChanged', (e) => {
+				console.log('switches changed :', e.target.changed);
+			});
+			container.append(switches);
+		});
+	</script>
+
+	<script type="module">
+		import QBicUISwitches from './components/js/ui/QBicUISwitches.js';
+		
+		window.addEventListener('load', (e) => {
+			const container = document.querySelectorAll('section')[3];
+			
+			const switches = new QBicUISwitches(['동해물과', '백두산이', '마르고', '닳도록'],[0, 1, 0, 1],[0, 0, 1, 1]);
+			switches.addEventListener('onChanged', (e) => {
+				console.log('QBicUISwitches changed :', e.target.changed);
+			});
+			container.append(switches);
+		});
+		
+	</script>
+</html>
