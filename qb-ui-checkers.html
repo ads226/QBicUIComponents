@@ -71,12 +71,32 @@
 	<script>
 		window.addEventListener('load', (e) => {
 			console.log("++++++++++++++++ page load completed!!");
-
-			let inputs = document.querySelector('qb-ui-checkers');
-			inputs.addEventListener('onChanged', (e) => {
-				console.log("inputs onChanged", e.target.changed);
-			})
 			
+			const container = document.querySelectorAll('section')[2];
+			
+			const checkers = document.createElement('qb-ui-checkers');
+			checkers.text = ['동해물과', '백두산이', '마르고', '닳도록'];
+			checkers.checked = [0, 1, 0, 1];
+			checkers.disabled = [0, 0, 1, 1];
+			checkers.addEventListener('onChanged', (e) => {
+				console.log('checkers changed :', e.target.changed);
+			});
+			container.append(checkers);
 		});
+	</script>
+
+	<script type="module">
+		import QBicUICheckers from './components/js/ui/QBicUICheckers.js';
+		
+		window.addEventListener('load', (e) => {
+			const container = document.querySelectorAll('section')[3];
+			
+			const checkers = new QBicUICheckers(['동해물과', '백두산이', '마르고', '닳도록'],[0, 1, 0, 1],[0, 0, 1, 1]);
+			checkers.addEventListener('onChanged', (e) => {
+				console.log('QBicUICheckers changed :', e.target.changed);
+			});
+			container.append(checkers);
+		});
+		
 	</script>
 </html>

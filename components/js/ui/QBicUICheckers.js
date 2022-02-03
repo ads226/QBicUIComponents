@@ -15,7 +15,7 @@ export default class QBicUICheckers extends QBicUIBase {
 		return this.#changed;
 	}
 	
-	constructor() {
+	constructor(arrText, arrChecked, arrDisabled) {
 		super();
 
 		const style = this.shadowRoot.querySelector('style');
@@ -107,6 +107,10 @@ export default class QBicUICheckers extends QBicUIBase {
 				filter: grayscale(100%) opacity(20%);
 			}
 		`;
+
+		if (arrText != undefined) this.text = arrText;
+		if (arrChecked != undefined) this.checked = arrChecked;
+		if (arrDisabled != undefined) this.disabled = arrDisabled;
 	}
 
 	get text() {
