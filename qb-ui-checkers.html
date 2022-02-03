@@ -3,9 +3,38 @@
 <html>
 	<head>
 		<title>QBicUIChecker</title>
-		<link rel="stylesheet" href="./css/style.css" />
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR');
+			* {
+				border: 0;
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+				user-select: none;
+				font-family: 'Noto Sans KR', sans-serif;
+			}
+			section {
+				outline: thin solid gray;
+				width: 80%;
+				padding: 25px 0;
+				margin: 50px auto;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 12px;
+			}
+			.wrapper {
+				display: flex;
+				align-items: center;
+				gap: 4px;
+			}
+		</style>
 		<script async type="module" src="./components/QBicConponents.js"></script>
-		<script type="text/javascript" src="./js/script.js"></script>
 	</head>
 	
 	<body>
@@ -38,4 +67,16 @@
 		
 		<section></section>
 	</body>
+	
+	<script>
+		window.addEventListener('load', (e) => {
+			console.log("++++++++++++++++ page load completed!!");
+
+			let inputs = document.querySelector('qb-ui-checkers');
+			inputs.addEventListener('onChanged', (e) => {
+				console.log("inputs onChanged", e.target.changed);
+			})
+			
+		});
+	</script>
 </html>
