@@ -1,4 +1,4 @@
-import QBicUIBase from './QBicUIBase.js';
+import QBicUIBase from '../base/QBicUIBase.js';
 import QBicUIEvent from '../event/QBicUIEvent.js';
 import QBicConfig from '../../QBicConfig.js';
 
