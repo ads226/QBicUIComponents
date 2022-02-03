@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>QBicUICheckers</title>
+		<title>QBicUIToggles</title>
 		<style>
 			@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR');
 			* {
@@ -60,7 +60,7 @@
 		</section>
 		
 		<section>
-			<qb-ui-checkers text="동해물과|백두산이|마르고|닳도록" checked="0|1|0|1" disabled="0|0|1|1"></qb-ui-checkers>
+			<qb-ui-toggles text="동해물과|백두산이|마르고|닳도록" checked="0|1|0|1" disabled="0|0|1|1"></qb-ui-toggles>
 		</section>
 		
 		<section></section>
@@ -74,28 +74,28 @@
 			
 			const container = document.querySelectorAll('section')[2];
 			
-			const checkers = document.createElement('qb-ui-checkers');
-			checkers.text = ['동해물과', '백두산이', '마르고', '닳도록'];
-			checkers.checked = [0, 1, 0, 1];
-			checkers.disabled = [0, 0, 1, 1];
-			checkers.addEventListener('onChanged', (e) => {
-				console.log('checkers changed :', e.target.changed);
+			const toggles = document.createElement('qb-ui-toggles');
+			toggles.text = ['동해물과', '백두산이', '마르고', '닳도록'];
+			toggles.checked = [0, 1, 0, 1];
+			toggles.disabled = [0, 0, 1, 1];
+			toggles.addEventListener('onChanged', (e) => {
+				console.log('toggles changed :', e.target.changed);
 			});
-			container.append(checkers);
+			container.append(toggles);
 		});
 	</script>
 
 	<script type="module">
-		import QBicUICheckers from './components/js/ui/QBicUICheckers.js';
+		import QBicUIToggles from './components/js/ui/QBicUIToggles.js';
 		
 		window.addEventListener('load', (e) => {
 			const container = document.querySelectorAll('section')[3];
 			
-			const checkers = new QBicUICheckers(['동해물과', '백두산이', '마르고', '닳도록'],[0, 1, 0, 1],[0, 0, 1, 1]);
-			checkers.addEventListener('onChanged', (e) => {
-				console.log('QBicUICheckers changed :', e.target.changed);
+			const toggles = new QBicUIToggles(['동해물과', '백두산이', '마르고', '닳도록'],[0, 1, 0, 1],[0, 0, 1, 1]);
+			toggles.addEventListener('onChanged', (e) => {
+				console.log('QBicUIToggles changed :', e.target.changed);
 			});
-			container.append(checkers);
+			container.append(toggles);
 		});
 		
 	</script>
