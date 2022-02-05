@@ -7,27 +7,6 @@ export default class QBicUICheckers extends QBicBaseCheckers {
 
 		const style = this.shadowRoot.querySelector('style');
 		style.textContent += `
-			:host {
-				font-size: var(--font-size);
-				font-weight: var(--font-weight);
-				color: var(--font-color);
-
-				display: flex;
-				flex-direction: var(--host-direction);
-				flex-wrap: var(--host-wrap);
-				justify-content: var(--host-justify-content);
-				align-items: var(--host-align-items);
-				align-content: var(--host-align-content);
-				gap: var(--host-gap);
-
-				width: var(--host-width);
-				height: var(--host-height);
-				padding: var(--host-padding);
-				margin: var(--host-margin);
-				border: var(--host-border);
-				background-color: var(--host-color);
-			}
-			
 			:host .wrapper {
 				display: flex;
 				flex-direction: var(--wrap-direction);
