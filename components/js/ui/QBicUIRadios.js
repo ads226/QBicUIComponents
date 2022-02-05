@@ -1,10 +1,10 @@
-import QBicBaseCheckers from '../base/QBicBaseCheckers.js';
+import QBicBaseRadios from '../base/QBicBaseRadios.js';
 import QBicConfig from '../../QBicConfig.js';
 
-export default class QBicUIToggles extends QBicBaseCheckers {
-	constructor(arrText, arrChecked, arrDisabled) {
-		super(arrText, arrChecked, arrDisabled);
-
+export default class QBicUIRadios extends QBicBaseRadios {
+	constructor(arrText, numChecked, arrDisabled) {
+		super(arrText, numChecked, arrDisabled);
+	
 		const style = this.shadowRoot.querySelector('style');
 		style.textContent += `
 			:host {
@@ -27,11 +27,13 @@ export default class QBicUIToggles extends QBicBaseCheckers {
 				border: var(--host-border);
 				background-color: var(--host-color);
 			}
-
+				
 			:host .wrapper {
 				display: flex;
+				flex-direction: var(--wrap-direction);
 				justify-content: var(--wrap-justify-content);
 				align-items: var(--wrap-align-items);
+				gap: var(--wrap-gap);
 
 				width: var(--wrap-width);
 				height: var(--wrap-height);
@@ -42,7 +44,24 @@ export default class QBicUIToggles extends QBicBaseCheckers {
 			}
 
 			:host input {
-				display: none;
+				appearance: none;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: var(--input-size);
+				height: var(--input-size);
+				border: var(--input-border);
+				border-radius: var(--input-size);
+				background-color: var(--input-color);
+				transition: var(--transition);
+			}
+			:host input::before {
+				content: '';
+				width: 0;
+				height: 0;
+				border-radius: var(--input-size);
+				background-color: #fff;
+				transition: var(--transition);
 			}
 			:host input + label {
 				width: var(--label-width);
@@ -50,18 +69,25 @@ export default class QBicUIToggles extends QBicBaseCheckers {
 				padding: var(--label-padding);
 				margin: var(--label-margin);
 				border: var(--label-border);
-				border-radius: var(--label-radius);
 				background-color: var(--label-color);
 				transition: var(--transition);
 			}
 
+			:host input:checked {
+				background-color: var(--input-color-checked);
+				border-color: var(--input-color-checked);
+			}
+			:host input:checked::before {
+				width: calc(var(--input-size) / 2);
+				height: calc(var(--input-size) / 2);
+			}
 			:host input:checked + label {
 				font-weight: var(--font-weight-checked);
 				color: var(--font-color-checked);
-				background-color: var(--label-color-checked);
-				border-color: var(--label-color-checked);
+				
 			}
 
+			:host input:disabled,
 			:host input:disabled + label {
 				filter: grayscale(100%) opacity(20%);
 			}
@@ -77,7 +103,7 @@ export default class QBicUIToggles extends QBicBaseCheckers {
 	}
 
 	static get is() {
-		return 'qb-ui-toggles';
+		return 'qb-ui-radios';
 	}
 
 	static get version() {
@@ -85,12 +111,12 @@ export default class QBicUIToggles extends QBicBaseCheckers {
 	}
 }
 
-if (!document.querySelector('head #qb_ui_toggles_style')) {
+if (!document.querySelector('head #qb_ui_radios_style')) {
 	const link = document.createElement('link');
-	link.id = 'qb_ui_toggles_style';
+	link.id = 'qb_ui_radios_style';
 	link.rel = 'stylesheet';
 	link.type ='text/css';
-	link.href = QBicConfig.componentsPath + 'css/QBicUIToggles.css';
+	link.href = QBicConfig.componentsPath + 'css/QBicUIRadios.css';
 
 	document.querySelector('head').append(link);
 }

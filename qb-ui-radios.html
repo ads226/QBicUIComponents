@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>QBicUIRadios</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR');
+			* {
+				border: 0;
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+				user-select: none;
+				font-family: 'Noto Sans KR', sans-serif;
+			}
+			section {
+				outline: thin solid gray;
+				width: 80%;
+				padding: 25px 0;
+				margin: 50px auto;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 12px;
+			}
+			.wrapper {
+				display: flex;
+				align-items: center;
+				gap: 4px;
+			}
+		</style>
+		<script async type="module" src="./components/QBicConponents.js"></script>
+	</head>
+	
+	<body>
+		<section>
+			<div class="container">
+				<div class="wrapper">
+					<input type="radio" name="radio" id="radio_0" checked />
+					<label for="radio_0">승용차</label>
+				</div>
+				<div class="wrapper">
+					<input type="radio" name="radio" id="radio_1" />
+					<label for="radio_1">버스</label>
+				</div>
+				<div class="wrapper">
+					<input type="radio" name="radio" id="radio_2" disabled />
+					<label for="radio_2">트럭</label>
+				</div>
+			</div>
+		</section>
+		
+		<section>
+			<qb-ui-radios text="승용차|버스|트럭" checked="1" disabled="0|0|1"></qb-ui-radios>
+		</section>
+		
+		<section></section>
+		
+		<section></section>
+	</body>
+	
+	<script>
+		window.addEventListener('load', (e) => {
+			console.log("++++++++++++++++ page load completed!!");
+			
+			const container = document.querySelectorAll('section')[2];
+			
+			const radios = document.createElement('qb-ui-radios');
+			radios.text = ['승용차', '버스', '트럭'];
+			radios.checked = 0;
+			radios.disabled = [0, 0, 1];
+			radios.addEventListener('onChanged', (e) => {
+				console.log('radios changed :', e.target.changed);
+			});
+			container.append(radios);
+		});
+	</script>
+	
+	<script type="module">
+		import QBicUIRadios from './components/js/ui/QBicUIRadios.js';
+
+		window.addEventListener('load', (e) => {
+			const container = document.querySelectorAll('section')[3];
+			
+			const radios = new QBicUIRadios(['승용차', '버스', '트럭'], 0, [0, 0, 1]);
+			radios.addEventListener('onChanged', (e) => {
+				console.log('QBicUICheckers changed :', e.target.changed);
+			});
+			container.append(radios);
+		});
+	</script>
+</html>

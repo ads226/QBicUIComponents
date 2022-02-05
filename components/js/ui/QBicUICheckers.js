@@ -1,7 +1,7 @@
-import QBicBaseChecker from '../base/QBicBaseChecker.js';
+import QBicBaseCheckers from '../base/QBicBaseCheckers.js';
 import QBicConfig from '../../QBicConfig.js';
 
-export default class QBicUICheckers extends QBicBaseChecker {
+export default class QBicUICheckers extends QBicBaseCheckers {
 	constructor(arrText, arrChecked, arrDisabled) {
 		super(arrText, arrChecked, arrDisabled);
 

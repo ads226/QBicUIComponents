@@ -1,0 +1,46 @@
+qb-ui-radios {
+	--font-size: 11pt;
+	--font-weight: normal;
+	--font-color: hsl(200, 50%, 10%, 0.9);
+
+	--host-direction: row;
+	--host-wrap: nowrap;
+	--host-justify-content: flex-start;
+	--host-align-items: stretch;
+	--host-align-content: stretch;
+	--host-gap: 12px;
+	--host-width: auto;
+	--host-height: auto;
+	--host-padding: 0;
+	--host-margin: 0;
+	--host-border: 0;
+	--host-color: none;
+
+	--wrap-direction: row;
+	--wrap-justify-content: flex-start;
+	--wrap-align-items: center;
+	--wrap-gap: 4px;
+	--wrap-width: auto;
+	--wrap-height: auto;
+	--wrap-padding: 0;
+	--wrap-margin: 0;
+	--wrap-border: 0;
+	--wrap-color: none;
+
+	--input-size: 1.2em;
+	--input-border: thin solid hsl(200, 50%, 10%, 0.5);
+	--input-color: none;
+
+	--label-width: auto;
+	--label-height: auto;
+	--label-padding: 0;
+	--label-margin: 0;
+	--label-border: 0;
+	--label-color: none;
+
+	--transition: 0.3s;
+
+	--font-weight-checked: medium;
+	--font-color-checked: hsl(200, 90%, 30%, 1);
+	--input-color-checked: hsl(200, 90%, 40%, 1);
+}
