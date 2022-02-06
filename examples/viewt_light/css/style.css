@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR');
+* {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	user-select: none;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+:root {
+	/* Layout */
+	--head-size: 75px;
+	--navi-size: 200px;
+	--body-size: 560px;
+	--footer-size: var(--head-size);
+}
+
+body {
+	--head-color: hsl(216, 7%, 14%, 1);
+	--navi-color: hsl(0, 0%, 6%, 1);
+	--body-color: hsl(0, 0%, 0%, 1);
+	--map-color: hsl(0, 0%, 5%, 1);
+	--footer-color: var(--head-color);
+
+	--seleted-color: hsl(205, 100%, 50%, 1);
+	
+	--text-selected-color: #fff;
+
+	width: 100vw;
+	height: 100vh;
+	
+	display: grid;
+	grid-template-columns: var(--navi-size) var(--body-size) minmax(calc(1200px - var(--navi-size) - var(--body-size)), auto);
+	grid-template-rows: var(--head-size) minmax(450px, auto) var(--footer-size);
+	grid-template-areas: 
+		'header header header'
+		'navi body map'
+		'footer footer footer';
+	align-content: stretch;
+}
+
+.link {
+	cursor: pointer;
+}
+
+.body-header {
+	grid-area: header;
+	display: grid;
+	grid-template-columns: auto 230px 230px;
+	/* background-color: var(--head-color); */
+
+}
+
+.body-header #changeTheme{
+/* 
+	display: grid;
+	place-items: center center;
+	color: var(--text-selected-color);
+	font-size: 10pt;
+	 */
+}
+.body-header #goExpert{
+	display: grid;
+	place-items: center center;
+	background-color: var(--seleted-color);
+	color: var(--text-selected-color);
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+.body-navi {
+	grid-area: navi;
+	background-color: var(--navi-color);
+}
+
+.body-body {
+	grid-area: body;
+	background-color: var(--body-color);
+}
+
+.body-map {
+	grid-area: map;
+	background-color: var(--map-color);
+}
+
+.body-footer {
+	grid-area: footer;
+	background-color: var(--footer-color);
+}
