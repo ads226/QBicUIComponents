@@ -39,26 +39,22 @@ body {
 		'footer footer footer';
 	align-content: stretch;
 }
-
 .link {
 	cursor: pointer;
 }
-
 .body-header {
 	grid-area: header;
 	display: grid;
 	grid-template-columns: auto 230px 230px;
-	/* background-color: var(--head-color); */
+	background-color: var(--head-color);
 
 }
 
 .body-header #changeTheme{
-/* 
 	display: grid;
 	place-items: center center;
 	color: var(--text-selected-color);
 	font-size: 10pt;
-	 */
 }
 .body-header #goExpert{
 	display: grid;
@@ -67,6 +63,7 @@ body {
 	color: var(--text-selected-color);
 	font-size: 12pt;
 	font-weight: 600;
+	
 }
 
 .body-navi {
