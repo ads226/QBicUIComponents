@@ -14,19 +14,19 @@
 	--navi-size: 200px;
 	--body-size: 560px;
 	--footer-size: var(--head-size);
-}
-
-body {
+	
+	/* Color */
 	--head-color: hsl(216, 7%, 14%, 1);
 	--navi-color: hsl(0, 0%, 6%, 1);
 	--body-color: hsl(0, 0%, 0%, 1);
 	--map-color: hsl(0, 0%, 5%, 1);
 	--footer-color: var(--head-color);
-
-	--seleted-color: hsl(205, 100%, 50%, 1);
 	
+	--seleted-color: hsl(205, 100%, 50%, 1);
 	--text-selected-color: #fff;
+}
 
+body {
 	width: 100vw;
 	height: 100vh;
 	
@@ -39,9 +39,18 @@ body {
 		'footer footer footer';
 	align-content: stretch;
 }
+body.theme-white {
+	--head-color: hsl(220, 100%, 83%, 1);
+	--navi-color: hsl(220, 60%, 90%, 1);
+	--body-color: hsl(220, 60%, 98%, 1);
+	--map-color: hsl(0, 0%, 65%, 1);
+	--footer-color: var(--head-color);
+}
+
 .link {
 	cursor: pointer;
 }
+
 .body-header {
 	grid-area: header;
 	display: grid;
