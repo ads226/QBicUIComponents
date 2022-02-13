@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>QBicUIChecker</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR');
+			* {
+				border: 0;
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+				user-select: none;
+				font-family: 'Noto Sans KR', sans-serif;
+			}
+			section {
+				outline: thin solid gray;
+				width: 80%;
+				padding: 25px 0;
+				margin: 50px auto;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 12px;
+
+				font-size: 12pt;
+				background-color: darkgray;
+			}
+		</style>
+		<script type="text/javascript" src="/components/QBicUIChecker.js"></script>
+	</head>
+	<body>
+		<section>
+			<input type="checkbox" id="checkbox_0" checked="false"/>
+			<label for="checkbox_0">동해물과</label>
+			<input type="checkbox" id="checkbox_1" />
+			<label for="checkbox_1">백두산이</label>
+			<input type="checkbox" id="checkbox_2" disabled checked />
+			<label for="checkbox_2">마르고</label>
+			<input type="checkbox" id="checkbox_3" disabled />
+			<label for="checkbox_3">닳도록</label>
+		</section>
+		<section>
+			<qb-ui-checker class="red" checked>동해물과</qb-ui-checker>
+			<qb-ui-checker>백두산이</qb-ui-checker>
+			<qb-ui-checker disabled checked>마르고</qb-ui-checker>
+			<qb-ui-checker disabled>닳도록</qb-ui-checker>
+		</section>
+	</body>
+	<script type="text/javascript">
+		let checkers = document.querySelectorAll(QBicUIChecker.is);
+		checkers.forEach((checker) => {
+			checker.addEventListener(QBicUICheckerEvent.CHANGE, (e) => {
+				console.log(e.target);
+			});
+		});
+	</script>
+</html>
