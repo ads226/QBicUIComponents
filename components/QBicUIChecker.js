@@ -17,11 +17,15 @@ class QBicUIChecker extends HTMLElement {
 		const style = document.createElement('style');
 		style.textContent = `
 			:host {
-				--input-size: 1.2em;
+				--input-size: 1em;
 				--input-border: thin solid hsl(200, 50%, 10%, 0.5);
+				--input-radius: 1px;
+				--input-color: none;
+				--input-color-checked: hsl(200, 90%, 40%, 1);
 
 				display: flex;
-				// font-size: 18pt;
+				align-items: center;
+				gap: 0.2em;
 			}
 			
 			:host * {
@@ -42,18 +46,45 @@ class QBicUIChecker extends HTMLElement {
 
 			:host input {
 				appearance: none;
-				display: flex;
 				font-size: inherit;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				width: var(--input-size);
 				height: var(--input-size);
 				border: var(--input-border);
 				border-radius: var(--input-radius);
 				background-color: var(--input-color);
-				transition: var(--input-transition);
+				transition: 0.25s;
+			}
+			:host input::before {
+				content: '';
+				width: 62%;
+				height: 33%;
+				border-bottom: calc(var(--input-size) / 7) solid;
+				border-left: calc(var(--input-size) / 7) solid;
+				border-color: transparent;
+				transition: 0.25s;
+			}
+
+			:host input:checked {
+				background-color: var(--input-color-checked);
+				border-color: var(--input-color-checked);
+				
+			}
+			:host input:checked::before {
+				border-color: #fff;
+				transform: rotate(-45deg);
+				margin-bottom: 29.5%;
 			}
 
 			:host label {
-				
+				line-height: 1.25;
+			}
+
+			:host input:disabled,
+			:host input:disabled + label {
+				filter: grayscale(100%) opacity(20%);
 			}
 		`;
 
