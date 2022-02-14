@@ -2,36 +2,41 @@
 <html>
     <head>
         <style>
-            * {
-                margin: 0;
-                padding: 0;
-                border: 0;
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR');
+			* {
+				border: 0;
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+				user-select: none;
+				font-family: 'Noto Sans KR', sans-serif;
+			}
+           .container {
+               display: flex;
+               gap: 100px;
+               width: fit-content;
+               outline: thin solid plum;
+           }
+           input {
+               appearance: none;
+               width: 1em;
+               height: 1em;
+               border: thin solid;
+           }
+            label {
+                /* font-size: 2ex; */
             }
-            .container {
-                display: flex;
-                padding: 1px;
-                gap: 1px;
-                width: 400px;
-                height: 30px;
-                background-color: black;
-                margin: 50px auto;
-            }
-            .item {
-                flex: 1;
-                background-color: plum;
-            }
-            .select {
-                background-color: red;
-                outline: 1px solid red;
-            }
+
         </style>
     </head>
     <body>
-        <div class="container">
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item select"></div>
-            <div class="item"></div>
-        </div>
+        <label for="checker1">
+        <input type="checkbox" id="checker1" />
+            가나다라
+        </label>
+        <label for="checker2">
+        <input type="checkbox" id="checker2" checked />
+            마바사
+        </label>
     </body>
 </html>

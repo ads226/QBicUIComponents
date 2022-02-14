@@ -3,6 +3,10 @@ class QBicUICheckerEvent extends Event {
 		super(type, init);
 	}
 
+	static get version() {
+		return '1.0.0'
+	}
+
 	static get CHANGE() {
 		return 'onChanged';
 	}
@@ -143,3 +147,77 @@ class QBicUIChecker extends HTMLElement {
 }
 
 customElements.define(QBicUIChecker.is, QBicUIChecker);
+
+
+class QBicUIToggle extends QBicUIChecker {
+	constructor(inner) {
+		super(inner);
+
+		this.shadowRoot.querySelector('style').textContent = `
+			:host {
+				--label-width: inherit;
+				--label-height: inherit;
+				--label-padding: 0 6px 1px;
+				--label-border: thin solid hsl(200, 50%, 10%, 0.5);
+				--label-radius: 4px;
+				--label-color: none;
+				--label-color-checked: hsl(200, 90%, 40%, 1);
+			}
+			
+			:host * {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				box-sizing: border-box;
+			}
+
+			:host input,
+			:host input + label {
+				cursor: pointer;
+			}
+			:host input:disabled,
+			:host input:disabled + label {
+				cursor: default;
+			}
+
+			:host input {
+				display: none;
+			}
+			
+			:host label {
+				line-height: 1.25;
+			}
+			
+			:host input + label {
+				width: var(--label-width);
+				height: var(--label-height);
+				padding: var(--label-padding);
+				border: var(--label-border);
+				border-radius: var(--label-radius);
+				background-color: var(--label-color);
+				transition: 0.25s;
+			}
+			
+			:host input:checked + label {
+				background-color: var(--label-color-checked);
+				border-color: var(--label-color-checked);
+				color: #fff;
+			}
+
+			:host input:disabled,
+			:host input:disabled + label {
+				filter: grayscale(100%) opacity(20%);
+			}
+		`;
+	}
+
+	static get is() {
+		return 'qb-ui-toggle';
+	}
+
+	static get version() {
+		return '1.0.0';
+	}
+}
+
+customElements.define(QBicUIToggle.is, QBicUIToggle);

@@ -22,8 +22,10 @@
 				justify-content: center;
 				align-items: center;
 				gap: 12px;
-				font-size: 12pt;
+				font-size: 10pt;
 			}
+
+			
 		</style>
 		<script type="text/javascript" src="/components/QBicUIChecker.js"></script>
 	</head>
@@ -44,13 +46,14 @@
 			<qb-ui-checker disabled checked>마르고</qb-ui-checker>
 			<qb-ui-checker disabled>닳도록</qb-ui-checker>
 		</section>
+		<section>
+			<qb-ui-toggle checked>동해물과</qb-ui-toggle>
+			<qb-ui-toggle>백두산이</qb-ui-toggle>
+			<qb-ui-toggle disabled checked>마르고</qb-ui-toggle>
+			<qb-ui-toggle disabled>닳도록</qb-ui-toggle>
+		</section>
 	</body>
 	<script type="text/javascript">
-		let checkers = document.querySelectorAll(QBicUIChecker.is);
-		checkers.forEach((checker) => {
-			checker.addEventListener(QBicUICheckerEvent.CHANGE, (e) => {
-				console.log(e.target);
-			});
-		});
+		
 	</script>
 </html>
