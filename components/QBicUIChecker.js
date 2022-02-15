@@ -17,7 +17,7 @@ class QBicUIChecker extends HTMLElement {
 		super();
 
 		const shadow = this.attachShadow({mode: 'open'});
-
+		
 		const style = document.createElement('style');
 		style.textContent = `
 			:host {
