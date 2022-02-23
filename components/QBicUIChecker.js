@@ -98,7 +98,17 @@ class QBicUIChecker extends QBicUICheckerBase {
 	constructor(inner) {
 		super(inner);
 
-		this.shadowRoot.querySelector('style').textContent += '';
+		this.shadowRoot.querySelector('style').textContent += `
+			:host input {
+				display: none;
+			}
+		`;
+
+		const symbol = document.createElement('div');
+		symbol.innerHTML = '<svg viewBox="0 0 40 40"><polygon points="2,20 16,34 38,11 33,6 16,24 7,15 "/></svg>';
+
+		const label = this.shadowRoot.querySelector('label');
+		label.insertBefore(symbol, label.firstChild);
 	}
 
 	static get is() {
@@ -116,7 +126,7 @@ class QBicUIToggle extends QBicUICheckerBase {
 	constructor(inner) {
 		super(inner);
 
-		this.shadowRoot.querySelector('style').textContent += '';
+		this.shadowRoot.querySelector('style').textContent += ``;
 	}
 
 	static get is() {
