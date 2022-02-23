@@ -4,31 +4,33 @@
 	<head>
 		<title>QBicUIChecker</title>
 		<style>
-			@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR');
 			* {
 				border: 0;
 				padding: 0;
 				margin: 0;
 				box-sizing: border-box;
 				user-select: none;
-				font-family: 'Noto Sans KR', sans-serif;
 			}
+
+			body {
+				font-size: 10pt;
+				background-color: hsl(0, 0%, 0%, 0.1);
+			}
+
 			section {
-				outline: thin solid gray;
-				width: 80%;
-				padding: 25px 0;
-				margin: 50px auto;
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				gap: 12px;
-				font-size: 10pt;
+				width: 80%;
+				padding: 25px 0;
+				margin: 50px auto;
+				outline: thin solid gray;
 			}
-
-			
 		</style>
 		<script type="text/javascript" src="/components/QBicUIChecker.js"></script>
 	</head>
+
 	<body>
 		<section>
 			<input type="checkbox" id="checkbox_0" checked="false"/>
@@ -53,6 +55,7 @@
 			<qb-ui-toggle disabled>닳도록</qb-ui-toggle>
 		</section>
 	</body>
+	
 	<script type="text/javascript">
 		
 	</script>

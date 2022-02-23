@@ -1,29 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR');
-* {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-	user-select: none;
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
 :root {
 	/* Layout */
-	--head-size: 75px;
-	--navi-size: 200px;
-	--body-size: 560px;
-	--footer-size: var(--head-size);
+	--head-height: 75px;
+	--navi-width: 200px;
+	--body-width: 560px;
+	--footer-height: var(--head-height);
 	
 	/* Color */
-	--head-color: hsl(216, 7%, 14%, 1);
+	--base-h: 205;
+	
+	--head-color: hsl(var(--base-h), 7%, 14%, 1);
 	--navi-color: hsl(0, 0%, 6%, 1);
 	--body-color: hsl(0, 0%, 0%, 1);
 	--map-color: hsl(0, 0%, 5%, 1);
 	--footer-color: var(--head-color);
 	
-	--seleted-color: hsl(205, 100%, 50%, 1);
-	--text-selected-color: #fff;
+	--seleted-color: hsl(var(--base-h), 100%, 50%, 1);
 }
 
 body {
@@ -31,8 +22,8 @@ body {
 	height: 100vh;
 	
 	display: grid;
-	grid-template-columns: var(--navi-size) var(--body-size) minmax(calc(1200px - var(--navi-size) - var(--body-size)), auto);
-	grid-template-rows: var(--head-size) minmax(450px, auto) var(--footer-size);
+	grid-template-columns: var(--navi-width) var(--body-width) minmax(calc(1100px - var(--navi-width) - var(--body-width)), auto);
+	grid-template-rows: var(--head-height) minmax(450px, auto) var(--footer-height);
 	grid-template-areas: 
 		'header header header'
 		'navi body map'
@@ -40,55 +31,55 @@ body {
 	align-content: stretch;
 }
 body.theme-white {
-	--head-color: hsl(220, 100%, 83%, 1);
-	--navi-color: hsl(220, 60%, 90%, 1);
-	--body-color: hsl(220, 60%, 98%, 1);
+	--base-h: 220;
+
+	--head-color: hsl(var(--base-h), 100%, 83%, 1);
+	--navi-color: hsl(var(--base-h), 60%, 90%, 1);
+	--body-color: hsl(var(--base-h)20, 60%, 98%, 1);
 	--map-color: hsl(0, 0%, 65%, 1);
 	--footer-color: var(--head-color);
 }
 
-.link {
-	cursor: pointer;
-}
 
 .body-header {
 	grid-area: header;
-	display: grid;
-	grid-template-columns: auto 230px 230px;
 	background-color: var(--head-color);
-
-}
-
-.body-header #changeTheme{
-	display: grid;
-	place-items: center center;
-	color: var(--text-selected-color);
-	font-size: 10pt;
-}
-.body-header #goExpert{
-	display: grid;
-	place-items: center center;
-	background-color: var(--seleted-color);
-	color: var(--text-selected-color);
-	font-size: 12pt;
-	font-weight: 600;
 	
+	display: grid;
+	grid-template-columns: auto repeat(2, 230px);
 }
+
+.body-header #changeTheme {
+	width: 100%;
+	height: 100%;
+	font-size: 11pt;
+}
+
+.body-header #goExpert {
+	font-size: 12pt;
+	font-weight: 500;
+	color: #fff;
+	background-color: var(--seleted-color);
+}
+
 
 .body-navi {
 	grid-area: navi;
 	background-color: var(--navi-color);
 }
 
+
 .body-body {
 	grid-area: body;
 	background-color: var(--body-color);
 }
 
+
 .body-map {
 	grid-area: map;
 	background-color: var(--map-color);
 }
+
 
 .body-footer {
 	grid-area: footer;
