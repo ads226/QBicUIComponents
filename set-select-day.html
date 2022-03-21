@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+	<body>
+		<set-select-yoil-small fn_id="trafficestimate"></set-select-yoil-small>
+		<set-check-yoil-full fn_id="yoil" fn_name="yoil"></set-check-yoil-full>
+	</body>
+
+	<script type="text/javascript">
+		class SetCheckYoilFull extends HTMLElement {
+			constructor() {
+				super();
+
+				this.innerHTML = `
+					<input type="checkbox" value="2" />
+					<label>월</label>
+					<input type="checkbox" value="3" />
+					<label>화</label>
+					<input type="checkbox" value="4" />
+					<label>수</label>
+					<input type="checkbox" value="5" />
+					<label>목</label>
+					<input type="checkbox" value="6" />
+					<label>금</label>
+					<input type="checkbox" value="7" />
+					<label>토</label>
+					<input type="checkbox" value="1" />
+					<label>일</label>
+				`;
+			}
+
+			static get observedAttributes() {
+				return ['fn_id', 'fn_name'];
+			}
+
+			attributeChangedCallback(attr, oldValue, newValue) {
+				const inputs = this.querySelectorAll('input');
+				const labels = this.querySelectorAll('label');
+
+				if (attr == 'fn_id') {
+					inputs.forEach((input, idx) => {
+						input.setAttribute('id', newValue + '_' + idx);
+						labels[idx].setAttribute('for', input.id);
+					});
+				} else if (attr == 'fn_name') {
+					inputs.forEach((input, idx) => {
+						input.setAttribute('name', newValue);
+					});
+				}
+			}
+		}
+		customElements.define('set-check-yoil-full', SetCheckYoilFull);
+
+
+		class SetSelectYoilSmall extends HTMLElement {
+			constructor() {
+				super();
+
+				this.innerHTML = `
+					<input type="radio" value="0" />
+					<label>전체</label>
+					<input type="radio" value="1" checked />
+					<label>월~목</label>
+					<input type="radio" value="2" />
+					<label>금</label>
+					<input type="radio" value="3" />
+					<label>토~일</label>
+				`;
+			}
+
+			static get observedAttributes() {
+				return ['fn_id'];
+			}
+
+			attributeChangedCallback(attr, oldValue, newValue) {
+				if (attr == 'fn_id') {
+					const inputs = this.querySelectorAll('input');
+					const labels = this.querySelectorAll('label');
+
+					for (let i = 0; i < 4; ++ i) {
+						inputs[i].setAttribute('id', newValue + '_yoil_' + i);
+						inputs[i].setAttribute('name', newValue + '_yoil');
+						labels[i].setAttribute('for', inputs[i].getAttribute('id'));
+					}
+				}
+			}
+		}
+		customElements.define('set-select-yoil-small', SetSelectYoilSmall);
+	</script>
+</html>

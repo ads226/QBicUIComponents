@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<style>
+			.container {
+				width: 200px;
+				height: 50px;
+				margin: 50px auto;
+
+				/* outline: thin solid plum; */
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<set-minmax-slider min="1" max="10" step="1" onchange="console.log(this);">
+				<input type="text" id="road_volum_width_min" name="road_volum_width" value="1">
+				<input type="text" id="road_volum_width_max" name="road_volum_width" value="10">
+			</set-minmax-slider>
+		</div>
+	</body>
+
+	<script>
+		class SetMinMaxSlider extends HTMLElement {
+			constructor() {
+				super();
+
+				const shadow = this.attachShadow({ mode: 'open' });
+
+				const style = document.createElement('style');
+				style.textContent = `
+					:host * {
+						margin: 0;
+						padding: 0;
+						border: 0;
+						box-sizing: border-box;
+					}
+					:host {
+						--size-height: 5px;
+						--size-button: 20px;
+						--size-label: 10px;
+						--color-empty: hsl(0, 0%, 50%, 0.25);
+						--color-fill: hsl(200, 90%, 45%, 1.00);
+						--color-label: #fff;
+					}
+
+					.slider {
+						position: relative;
+						height: var(--size-height);
+						background-color: var(--color-empty);
+						border-radius: var(--size-height);
+					}
+
+					.slider .progress {
+						position: absolute;
+						height: 100%;
+						left: 25%;
+						right: 25%;
+						background-color: var(--color-fill);
+						border-radius: var(--size-height);
+					}
+
+					.range-input{
+						position: relative;
+					}
+
+					.range-input input{
+						position: absolute;
+						width: 100%;
+						height: var(--size-height);
+						top: calc(0px - var(--size-height));
+						background: none;
+						pointer-events: none;
+
+						-webkit-appearance: none;
+					}
+
+					input[type="range"]::-webkit-slider-thumb {
+						content: "10";
+
+						-webkit-appearance: none;
+						width: var(--size-button);
+						height: var(--size-button);
+						background-color: var(--color-fill);
+						border-radius: var(--size-button);
+						pointer-events: auto;
+						cursor: pointer;
+					}
+
+					input[type="range"]::-webkit-slider-thumb::after {
+						position: absolute;
+						constent: "11";
+						width: var(--size-button);
+						height: var(--size-button);
+						color: #000;
+					}
+
+					label {
+						position: absolute;
+						top: calc(0px - (var(--size-height) + var(--size-button)) / 2);
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: var(--size-button);
+						line-height: var(--size-button);
+						font-size: var(--size-label);
+						color: var(--color-label);
+						pointer-events: none;
+						z-index: 10;
+					}
+				`;
+				
+				const progress = document.createElement('div');
+				progress.classList.add('progress');
+
+				const slider = document.createElement('div');
+				slider.classList.add('slider');
+				slider.append(progress);
+
+				const min = document.createElement('input');
+				min.setAttribute('type', 'range');
+				min.id = 'range-min';
+				min.classList.add('range-min');
+				
+				const minLabel = document.createElement('label');
+				minLabel.setAttribute('for', min.id);
+
+				const max = document.createElement('input');
+				max.setAttribute('type', 'range');
+				max.id = 'range-max';
+				max.classList.add('range-max');
+
+				const maxlabel = document.createElement('label');
+				maxlabel.setAttribute('for', max.id);
+
+				const wrap = document.createElement('div');
+				wrap.classList.add('range-input');
+				wrap.append(min, minLabel, max, maxlabel);
+
+				shadow.append(style, slider, wrap);
+			}
+
+			static get observedAttributes() {
+				return ['step'];
+			}
+
+			attributeChangedCallback(attr, oldValue, newValue) {
+				const src = document.querySelectorAll('input');
+				const min = this.shadowRoot.querySelector('.range-min');
+				const max = this.shadowRoot.querySelector('.range-max');
+				const step = parseInt(this.getAttribute('step'));
+
+				this.stepCnt = (parseInt(this.getAttribute('max')) - parseInt(this.getAttribute('min'))) / step;
+
+				[min, max].forEach((input, idx) => {
+					input.setAttribute('min', this.getAttribute('min'));
+					input.setAttribute('max', this.getAttribute('max'));
+					input.setAttribute('step', step);
+					input.setAttribute('value', src[idx].value);
+
+					input.addEventListener('input', (e) => {
+						let minValue = parseInt(min.value);
+						let maxValue = parseInt(max.value);
+
+						if (maxValue - minValue < step) {
+							if (e.currentTarget === min) {
+								min.value = maxValue - step;
+							} else {
+								max.value = minValue + step;
+							}
+						} else {
+							src[0].value = minValue;
+							src[1].value = maxValue;
+							this.setProgress();
+						}
+					});
+
+					input.addEventListener('mouseup', (e) => {
+						this.onchange(this);
+					});
+				});
+
+				this.setProgress();
+
+				console.log(src);
+			}
+
+			setProgress() {
+				const prog = this.shadowRoot.querySelector('.slider .progress');
+				const btns = this.shadowRoot.querySelectorAll('input');
+				const labels = this.shadowRoot.querySelectorAll('label');
+
+				labels[0].innerHTML = btns[0].value;
+				labels[1].innerHTML = btns[1].value;
+
+				prog.style.left = 'calc((100% - var(--size-button)) / ' + this.stepCnt + ' * ' + (parseInt(btns[0].value) - parseInt(btns[0].min)) + ' + (var(--size-button) / 2))';
+				prog.style.right = 'calc((100% - var(--size-button)) / ' + this.stepCnt + ' * ' + (parseInt(btns[1].max) - parseInt(btns[1].value)) + ' + (var(--size-button) / 2))';
+				labels[0].style.left = 'calc((100% - var(--size-button)) / ' + this.stepCnt + ' * ' + (parseInt(btns[0].value) - parseInt(btns[0].min)) + ' )';
+				labels[1].style.right = 'calc((100% - var(--size-button)) / ' + this.stepCnt + ' * ' + (parseInt(btns[1].max) - parseInt(btns[1].value)) + ' )';
+			}
+
+			static get is() {
+				return 'set-minmax-slider';
+			}
+		}
+		customElements.define(SetMinMaxSlider.is, SetMinMaxSlider);
+	</script>
+</html>
